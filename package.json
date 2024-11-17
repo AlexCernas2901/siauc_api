@@ -1,0 +1,24 @@
+{
+  "name": "siauc",
+  "version": "1.0.0",
+  "description": "sistema de asistencia de la universidad de colima",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "dev": "node --watch ./app.js ",
+    "start": "node app.js"
+  },
+  "author": "Angel Alexis Cernas Hernandez",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.1",
+    "mongoose": "^8.8.0"
+  },
+  "eslintConfig": {
+    "extends": "standard"
+  },
+  "devDependencies": {
+    "morgan": "^1.10.0"
+  }
+}
