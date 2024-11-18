@@ -2,6 +2,9 @@ import express from 'express'
 import morgan from 'morgan'
 import cors from 'cors'
 import connectToDB from './src/database/dataBaseConnection.js'
+import users from './src/api/users/routes.js'
+import teachers from './src/api/teachers/routes.js'
+import schedules from './src/api/schedules/routes.js'
 
 process.loadEnvFile('./src/envs/.env.app')
 
@@ -21,6 +24,10 @@ app.get('/', (req, res) => {
     res.status(500).json({ error: error.message })
   }
 })
+
+app.use('/users', users)
+app.use('/teachers', teachers)
+app.use('/schedules', schedules)
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`)

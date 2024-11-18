@@ -17,9 +17,4 @@ const connectToDB = async () => {
   }
 }
 
-// mongoose.connection.on('disconnected', () => {
-//   console.log('attempting to reconnect to the database')
-//   connectToDB()
-// })
-
 export default connectToDB
