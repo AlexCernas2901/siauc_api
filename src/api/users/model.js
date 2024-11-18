@@ -10,13 +10,24 @@ const userSchema = new mongoose.Schema(
     accountNumber: {
       type: String,
       length: 8,
-      required: true,
-      unique: true
+      unique: true,
+      required: true
+    },
+    uid: {
+      type: String,
+      length: 8,
+      unique: true,
+      required: true
     },
     role: {
       type: String,
       enum: ['admin', 'teacher'],
       default: 'teacher',
+      required: true
+    },
+    password: {
+      type: String,
+      length: 25,
       required: true
     }
   },

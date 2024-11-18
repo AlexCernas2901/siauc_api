@@ -3,7 +3,7 @@ import Users from './controllers.js'
 
 const users = Router()
 
-// Rutas para usuarios
+// users routes
 users.post('/', Users.createUser)
 
 export default users

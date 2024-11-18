@@ -1,10 +1,10 @@
-import User from './user.js'
+import User from './model.js'
 
 class Users {
   // post a new user
   static async createUser(req, res) {
     try {
-      const { name, accountNumber, role } = req.body
+      const { name, accountNumber, uid, role, password } = req.body
 
       const existingUser = await User.findOne({ accountNumber })
 
@@ -12,7 +12,13 @@ class Users {
         return res.status(400).json({ error: 'User already exists' })
       }
 
-      const newUser = await User.create({ name, accountNumber, role })
+      const newUser = await User.create({
+        name,
+        accountNumber,
+        uid,
+        role,
+        password
+      })
 
       res.status(201).json(newUser)
     } catch (error) {

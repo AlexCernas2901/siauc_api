@@ -3,7 +3,7 @@ import Schedules from './controllers.js'
 
 const schedules = Router()
 
-// Rutas para usuarios
+// schedules routes
 schedules.get('/', Schedules.getAllSchedules)
 schedules.post('/', Schedules.createNewSchedule)
 

@@ -1,11 +1,12 @@
-import User from '../users/user.js'
+import User from '../users/model.js'
 
 class Teachers {
   // get all teacher role teachers {
   static async getAllTeachers(req, res) {
     try {
-      const teachers = await User.find({ role: 'teacher' })
-      res.status(200).json(teachers)
+      const foundTeachers = await User.find({ role: 'teacher' })
+
+      res.status(200).json(foundTeachers)
     } catch (error) {
       res.status(500).json({ error: error.message })
     }
@@ -14,34 +15,58 @@ class Teachers {
   // get a teacher role user by accountNumber
   static async getTeacherByAccountNumber(req, res) {
     try {
-      const teacher = await User.findOne({
-        accountNumber: req.params.accountNumber,
+      const { accountNumber } = req.params
+
+      const foundTeacher = await User.findOne({
+        accountNumber,
         role: 'teacher'
       })
-      res.status(200).json(teacher)
+
+      res.status(200).json(foundTeacher)
     } catch (error) {
       res.status(500).json({ error: error.message })
     }
   }
 
   // delete a teacher
-  static async deleteUser(req, res) {
+  static async deleteTeacher(req, res) {
     try {
-      await User.findOneAndDelete({ accountNumber: req.params.accountNumber })
+      const { accountNumber } = req.params
+
+      const foundTeacher = await User.findOne({
+        accountNumber,
+        role: 'teacher'
+      })
+
+      if (!foundTeacher) {
+        return res.status(404).json({ message: 'User not found' })
+      }
+
+      await User.findOneAndDelete({ accountNumber })
+
       res.status(204).end()
     } catch (error) {
       res.status(500).json({ error: error.message })
     }
   }
 
-  // put a teacher
+  // PUT a teacher
   static async replaceUser(req, res) {
     try {
-      await User.findOneAndReplace(
-        { accountNumber: req.params.accountNumber },
-        req
+      const { accountNumber } = req.params
+      const newUserData = req.body
+
+      const replacedUser = await User.findOneAndReplace(
+        { accountNumber },
+        newUserData,
+        { new: false, upsert: false, runValidators: true }
       )
-      res.status(204).end()
+
+      if (!replacedUser || !Object.keys(newUserData).length) {
+        return res.status(404).json({ message: 'User not found' })
+      }
+
+      res.status(200).json({ message: 'User replaced successfully' })
     } catch (error) {
       res.status(500).json({ error: error.message })
     }
@@ -50,12 +75,24 @@ class Teachers {
   // patch a teacher
   static async updateUser(req, res) {
     try {
-      await User.findOneAndUpdate(
-        { accountNumber: req.params.accountNumber },
-        req.body,
-        { new: true }
+      const { accountNumber } = req.params
+      const newUserData = req.body
+
+      if (!newUserData || !Object.keys(newUserData).length) {
+        return res.status(400).json({ message: 'No updates provided' })
+      }
+
+      const updatedUser = await User.findOneAndUpdate(
+        { accountNumber },
+        { $set: newUserData },
+        { new: false, upsert: false, runValidators: true }
       )
-      res.status(204).end()
+
+      if (!updatedUser) {
+        return res.status(404).json({ message: 'User not found' })
+      }
+
+      res.status(200).json({ message: 'User updated successfully' })
     } catch (error) {
       res.status(500).json({ error: error.message })
     }

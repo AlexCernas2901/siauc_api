@@ -2,9 +2,9 @@ import mongoose from 'mongoose'
 
 process.loadEnvFile('./src/envs/.env.db')
 
-const dbUser = process.env.DB_USER ?? 'admin'
-const dbPassword = process.env.DB_PASSWORD ?? 'admin'
-const dbName = process.env.DB_NAME ?? 'test'
+const dbUser = process.env.DB_USER
+const dbPassword = process.env.DB_PASSWORD
+const dbName = process.env.DB_NAME
 
 const uri = `mongodb+srv://${dbUser}:${dbPassword}@tests.lvjae.mongodb.net/?retryWrites=true&w=majority&appName=${dbName}`
 

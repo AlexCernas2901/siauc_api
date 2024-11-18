@@ -1,5 +1,5 @@
 import Schedule from './model.js'
-import User from '../users/user.js'
+import User from '../users/model.js'
 
 class Schedules {
   static async getAllSchedules(req, res) {
