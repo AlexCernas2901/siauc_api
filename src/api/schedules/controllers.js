@@ -1,5 +1,5 @@
-import Schedule from './model.js'
-import User from '../users/model.js'
+import { Schedule } from './model.js'
+import { User } from '../users/model.js'
 
 class Schedules {
   static async getAllSchedules(req, res) {
@@ -36,4 +36,4 @@ class Schedules {
   }
 }
 
-export default Schedules
+export { Schedules }

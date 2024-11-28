@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import Schedules from './controllers.js'
+import { Schedules } from './controllers.js'
 
 const schedules = Router()
 
@@ -7,4 +7,4 @@ const schedules = Router()
 schedules.get('/', Schedules.getAllSchedules)
 schedules.post('/', Schedules.createNewSchedule)
 
-export default schedules
+export { schedules }

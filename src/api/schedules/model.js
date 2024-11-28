@@ -34,4 +34,4 @@ const scheduleSchema = new mongoose.Schema(
   }
 )
 
-export default mongoose.model('Schedule', scheduleSchema)
+export const Schedule = mongoose.model('Schedule', scheduleSchema)

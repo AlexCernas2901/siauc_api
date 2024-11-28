@@ -1,4 +1,4 @@
-import User from '../users/model.js'
+import { User } from '../users/model.js'
 
 class Teachers {
   // get all teacher role teachers {
@@ -99,4 +99,4 @@ class Teachers {
   }
 }
 
-export default Teachers
+export { Teachers }

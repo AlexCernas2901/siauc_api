@@ -1,4 +1,4 @@
-import User from './model.js'
+import { User } from './model.js'
 
 class Users {
   // post a new user
@@ -27,4 +27,4 @@ class Users {
   }
 }
 
-export default Users
+export { Users }

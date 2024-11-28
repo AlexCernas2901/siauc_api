@@ -1,12 +1,7 @@
 import mongoose from 'mongoose'
+import { dbConfig } from '../config/envConfig.js'
 
-process.loadEnvFile('./src/envs/.env.db')
-
-const dbUser = process.env.DB_USER
-const dbPassword = process.env.DB_PASSWORD
-const dbName = process.env.DB_NAME
-
-const uri = `mongodb+srv://${dbUser}:${dbPassword}@tests.lvjae.mongodb.net/?retryWrites=true&w=majority&appName=${dbName}`
+const uri = `mongodb+srv://${dbConfig.dbUser}:${dbConfig.dbPassword}@tests.lvjae.mongodb.net/?retryWrites=true&w=majority&appName=${dbConfig.dbName}`
 
 const connectToDB = async () => {
   try {
@@ -17,4 +12,4 @@ const connectToDB = async () => {
   }
 }
 
-export default connectToDB
+export { connectToDB }

@@ -1,6 +1,6 @@
-import Attendance from './model.js'
-import User from '../users/model.js'
-import Schedules from '../schedules/model.js'
+import { Attendance } from './model.js'
+import { User } from '../users/model.js'
+import { Schedule } from '../schedules/model.js'
 
 class Attendances {
   static async getAllAttendances(req, res) {
@@ -47,7 +47,7 @@ class Attendances {
       const { accountNumber } = foundTeacher
 
       // verificar si el maestro tiene un horario asignado
-      const foundSchedule = await Schedules.findOne({ accountNumber })
+      const foundSchedule = await Schedule.findOne({ accountNumber })
       if (!foundSchedule) {
         return res
           .status(404)
@@ -158,4 +158,4 @@ const timeDifference = (currentDate, scheduleDate) => {
   return (currentDate - scheduleDate) / (1000 * 60)
 }
 
-export default Attendances
+export { Attendances }

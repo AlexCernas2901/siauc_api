@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import Teachers from './controllers.js'
+import { Teachers } from './controllers.js'
 
 const teachers = Router()
 
@@ -10,4 +10,4 @@ teachers.delete('/:accountNumber', Teachers.deleteTeacher)
 teachers.put('/:accountNumber', Teachers.replaceUser)
 teachers.patch('/:accountNumber', Teachers.updateUser)
 
-export default teachers
+export { teachers }
